@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import type { LoginFormData } from "../../types";
 import FormError from "../errors/FormError";
+import { login } from "../../api/auth";
 
 const LoginForm = () => {
   const {
@@ -9,16 +10,9 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm<LoginFormData>();
 
-  const onSubmit = (data: LoginFormData) => {
-    console.log(data);
+  const onSubmit = async (data: LoginFormData) => {
+    await login(data.email, data.password);
   };
-
-  if (errors.email) {
-    console.error("Email error:", errors.email.message);
-  }
-  if (errors.password) {
-    console.error("Password error:", errors.password.message);
-  }
 
   return (
     <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(onSubmit)}>
