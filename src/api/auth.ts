@@ -9,6 +9,7 @@ export const login = async (email: string, password: string) => {
       data: { token, message, role },
     } = await api.post("/login", { email, password });
     localStorage.setItem("AUTH_TOKEN", token);
+    localStorage.setItem("ROLE", role);
     useAuthStore.getState().setAuth(role);
     toast.success(message);
   } catch (error) {

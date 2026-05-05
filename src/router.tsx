@@ -4,6 +4,7 @@ import { PublicLayout } from "./layouts/PublicLayout";
 import { BarberLayout } from "./layouts/BarberLayout";
 import { AdminLayout } from "./layouts/AdminLayout";
 import { PrivateLayout } from "./layouts/PrivateLayout";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <h2>Admin</h2>,
+            element: <Dashboard />,
           },
         ],
       },

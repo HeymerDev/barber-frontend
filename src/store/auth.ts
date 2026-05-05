@@ -2,7 +2,6 @@ import { create } from "zustand";
 
 interface AuthState {
   role: string | null;
-
   isAuthenticated: boolean;
 
   setAuth: (role: string) => void;
@@ -11,7 +10,7 @@ interface AuthState {
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
-  role: null,
+  role: localStorage.getItem("ROLE"),
 
   isAuthenticated: !!localStorage.getItem("AUTH_TOKEN"),
 
@@ -23,6 +22,7 @@ export const useAuthStore = create<AuthState>((set) => ({
 
   logout: () => {
     localStorage.removeItem("AUTH_TOKEN");
+    localStorage.removeItem("ROLE");
 
     set({
       role: null,
