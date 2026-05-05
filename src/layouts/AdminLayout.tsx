@@ -1,6 +1,7 @@
 import { Navigate, Outlet } from "react-router";
 import { useAuthStore } from "../store/auth";
 import AdminNavbar from "../components/navigation/Navbar";
+import { Toaster } from "sonner";
 
 export const AdminLayout = () => {
   const role = useAuthStore((state) => state.role);
@@ -18,6 +19,7 @@ export const AdminLayout = () => {
       <section className="pt-24 py-5">
         <Outlet />
       </section>
+      <Toaster position="bottom-right" theme="system" />
     </>
   );
 };

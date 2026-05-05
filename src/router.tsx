@@ -5,6 +5,7 @@ import { BarberLayout } from "./layouts/BarberLayout";
 import { AdminLayout } from "./layouts/AdminLayout";
 import { PrivateLayout } from "./layouts/PrivateLayout";
 import Dashboard from "./pages/Dashboard";
+import Services from "./pages/Services";
 
 const router = createBrowserRouter([
   {
@@ -28,11 +29,14 @@ const router = createBrowserRouter([
       {
         path: "/admin",
         element: <AdminLayout />,
-
         children: [
           {
             index: true,
             element: <Dashboard />,
+          },
+          {
+            path: "services",
+            element: <Services />,
           },
         ],
       },
