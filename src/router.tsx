@@ -7,6 +7,7 @@ import { PrivateLayout } from "./layouts/PrivateLayout";
 import Dashboard from "./pages/Dashboard";
 import Services from "./pages/Services";
 import { Appoinments } from "./pages/Appoinments";
+import Book from "./pages/Book";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       },
       {
         index: true,
-        element: <h2>Book</h2>,
+        element: <Book />,
       },
     ],
   },

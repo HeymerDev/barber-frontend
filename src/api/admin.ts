@@ -16,7 +16,7 @@ export const createAppointment = async (
   date: string,
 ) => {
   const {
-    data: { message, appointment },
+    data: { message },
   } = await api.post("/appointments/book", {
     customerName,
     customerLastName,
@@ -27,7 +27,7 @@ export const createAppointment = async (
     date,
   });
   toast.success(message);
-  return appointment;
+  return message;
 };
 
 export const updateAppointmentStatus = async (id: number, status: string) => {
