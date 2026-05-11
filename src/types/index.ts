@@ -16,6 +16,8 @@ export interface Barber {
   role: UserRole;
   createdAt: string;
   updatedAt: string;
+  services: Service[];
+  active: boolean;
 }
 
 export interface Service {

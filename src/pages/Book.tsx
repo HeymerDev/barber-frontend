@@ -33,7 +33,8 @@ const Book = () => {
   const fetchBarbers = async () => {
     try {
       const barbers = await getBarbers();
-      setBarbers(barbers);
+      const barberFiltered = barbers.filter((barber: Barber) => barber.active);
+      setBarbers(barberFiltered);
     } catch (error) {
       console.error(error);
     }

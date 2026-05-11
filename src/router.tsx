@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Services from "./pages/Services";
 import { Appoinments } from "./pages/Appoinments";
 import Book from "./pages/Book";
+import Barbers from "./pages/Barber";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
           {
             path: "appointments",
             element: <Appoinments />,
+          },
+          {
+            path: "barbers",
+            element: <Barbers />,
           },
         ],
       },

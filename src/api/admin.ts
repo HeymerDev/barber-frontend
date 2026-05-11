@@ -42,6 +42,32 @@ export const getBarbers = async () => {
   return data;
 };
 
+export const createBarber = async (
+  name: string,
+  lastName: string,
+  email: string,
+  password: string,
+  serviceIds: number[],
+) => {
+  const {
+    data: { message },
+  } = await api.post("/admin/barbers", {
+    name,
+    lastName,
+    email,
+    password,
+    serviceIds,
+  });
+  toast.success(message);
+};
+
+export const deleteBarber = async (id: number) => {
+  const {
+    data: { message },
+  } = await api.delete(`/admin/barbers/${id}`);
+  toast.success(message);
+};
+
 export const getServices = async () => {
   const { data } = await api.get("/admin/services");
   return data;

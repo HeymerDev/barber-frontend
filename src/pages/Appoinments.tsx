@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import TableAppoinments from "../components/tables/TableAppoinments";
-import type { Appointment } from "../types";
+import type { Appointment, Barber } from "../types";
 import {
   updateAppointmentStatus,
   getAppointments,
@@ -37,7 +37,8 @@ export const Appoinments = () => {
   const fetchBarbers = async () => {
     try {
       const barbers = await getBarbers();
-      setBarbers(barbers);
+      const barberFiltered = barbers.filter((barber: Barber) => barber.active);
+      setBarbers(barberFiltered);
     } catch (error) {
       console.error(error);
     }
