@@ -6,6 +6,37 @@ export const getAppointments = async () => {
   return data;
 };
 
+export const createAppointment = async (
+  customerName: string,
+  customerLastName: string,
+  customerPhone: string,
+  customerEmail: string,
+  serviceId: number,
+  barberId: number,
+  date: string,
+) => {
+  const {
+    data: { message, appointment },
+  } = await api.post("/appointments/book", {
+    customerName,
+    customerLastName,
+    customerPhone,
+    customerEmail,
+    serviceId,
+    barberId,
+    date,
+  });
+  toast.success(message);
+  return appointment;
+};
+
+export const updateAppointmentStatus = async (id: number, status: string) => {
+  const {
+    data: { message },
+  } = await api.patch(`/admin/appointments/${id}`, { status });
+  toast.success(message);
+};
+
 export const getBarbers = async () => {
   const { data } = await api.get("/admin/barbers");
   return data;
@@ -39,12 +70,5 @@ export const deleteService = async (id: number) => {
   const {
     data: { message },
   } = await api.delete(`/admin/services/${id}`);
-  toast.success(message);
-};
-
-export const updateAppointmentStatus = async (id: number, status: string) => {
-  const {
-    data: { message },
-  } = await api.patch(`/admin/appointments/${id}`, { status });
   toast.success(message);
 };

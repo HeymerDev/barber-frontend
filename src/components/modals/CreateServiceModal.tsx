@@ -1,8 +1,6 @@
 import { X } from "lucide-react";
 import { useForm } from "react-hook-form";
-
 import { createService } from "../../api/admin";
-
 import type { Service } from "../../types";
 
 type Props = {

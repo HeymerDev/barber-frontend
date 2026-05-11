@@ -1,25 +1,55 @@
 import { useEffect, useState } from "react";
 import TableAppoinments from "../components/tables/TableAppoinments";
 import type { Appointment } from "../types";
-import { updateAppointmentStatus, getAppointments } from "../api/admin";
+import {
+  updateAppointmentStatus,
+  getAppointments,
+  getServices,
+  getBarbers,
+} from "../api/admin";
+import CreateAppoinmentModal from "../components/modals/CreateAppoinmentModal";
 
 export const Appoinments = () => {
   const [appoinments, setAppoinments] = useState<Appointment[]>([]);
   const [isCreateOpen, setIsCreateOpen] = useState(false);
-  const [selectedAppoinment, setSelectedAppoinment] =
-    useState<Appointment | null>(null);
+  const [services, setServices] = useState([]);
+  const [barbers, setBarbers] = useState([]);
+
+  const fetchAppoinments = async () => {
+    try {
+      const appoinments = await getAppointments();
+
+      setAppoinments(appoinments);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchServices = async () => {
+    try {
+      const services = await getServices();
+      setServices(services);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const fetchBarbers = async () => {
+    try {
+      const barbers = await getBarbers();
+      setBarbers(barbers);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
-    const fetchAppoinments = async () => {
-      try {
-        const appoinments = await getAppointments();
-
-        setAppoinments(appoinments);
-      } catch (error) {
-        console.error(error);
-      }
+    const init = async () => {
+      await fetchServices();
+      await fetchBarbers();
+      await fetchAppoinments();
     };
-    fetchAppoinments();
+    init();
   }, [appoinments]);
 
   const handleEdit = (id: number) => {
@@ -28,10 +58,6 @@ export const Appoinments = () => {
 
   const handleDelete = async (id: number) => {
     await updateAppointmentStatus(id, "cancelled");
-  };
-
-  const handleAppoinmentCreated = (newAppoinment: Appointment) => {
-    setAppoinments((prev) => [newAppoinment, ...prev]);
   };
 
   return (
@@ -62,9 +88,13 @@ export const Appoinments = () => {
         onDelete={handleDelete}
       />
 
-      {/* Modal editar */}
-
       {/* Modal crear */}
+      <CreateAppoinmentModal
+        isOpen={isCreateOpen}
+        onClose={() => setIsCreateOpen(false)}
+        barbers={barbers}
+        services={services}
+      />
     </main>
   );
 };
