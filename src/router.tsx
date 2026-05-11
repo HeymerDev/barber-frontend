@@ -6,6 +6,7 @@ import { AdminLayout } from "./layouts/AdminLayout";
 import { PrivateLayout } from "./layouts/PrivateLayout";
 import Dashboard from "./pages/Dashboard";
 import Services from "./pages/Services";
+import { Appoinments } from "./pages/Appoinments";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
           {
             path: "services",
             element: <Services />,
+          },
+          {
+            path: "appointments",
+            element: <Appoinments />,
           },
         ],
       },

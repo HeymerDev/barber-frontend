@@ -41,3 +41,10 @@ export const deleteService = async (id: number) => {
   } = await api.delete(`/admin/services/${id}`);
   toast.success(message);
 };
+
+export const updateAppointmentStatus = async (id: number, status: string) => {
+  const {
+    data: { message },
+  } = await api.patch(`/admin/appointments/${id}`, { status });
+  toast.success(message);
+};
