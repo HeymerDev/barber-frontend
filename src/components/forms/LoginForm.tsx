@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import type { LoginFormData } from "../../types";
 import FormError from "../errors/FormError";
 import { login } from "../../api/auth";
+import { redirect } from "react-router";
 
 const LoginForm = () => {
   const {
@@ -12,6 +13,7 @@ const LoginForm = () => {
 
   const onSubmit = async (data: LoginFormData) => {
     await login(data.email, data.password);
+    redirect("/");
   };
 
   return (

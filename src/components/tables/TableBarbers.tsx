@@ -1,12 +1,10 @@
 import type { Barber } from "../../types";
-import { Trash2 } from "lucide-react";
 
 type Props = {
   barbers: Barber[];
-  onDelete: (id: number) => void;
 };
 
-const TableBarbers = ({ barbers, onDelete }: Props) => {
+const TableBarbers = ({ barbers }: Props) => {
   return (
     <div className="relative overflow-x-auto bg-neutral-primary-soft shadow-xs rounded-base border border-default mt-6">
       <table className="w-full text-sm text-left rtl:text-right text-body">
@@ -23,10 +21,6 @@ const TableBarbers = ({ barbers, onDelete }: Props) => {
             <th scope="col" className="px-6 py-4 font-medium text-center">
               Servicios
             </th>
-
-            <th scope="col" className="px-6 py-4 font-medium text-center">
-              Acciones
-            </th>
           </tr>
         </thead>
 
@@ -40,10 +34,8 @@ const TableBarbers = ({ barbers, onDelete }: Props) => {
               <td className="px-6 py-4 font-medium text-heading whitespace-nowrap">
                 {barber.name} {barber.lastName}
               </td>
-
               {/* email */}
               <td className="px-6 py-4">{barber.email}</td>
-
               {/* Servicios */}
               <td className="px-6 py-4 text-center">
                 {barber.services.map((service) => (
@@ -55,20 +47,7 @@ const TableBarbers = ({ barbers, onDelete }: Props) => {
                   </span>
                 ))}
               </td>
-              {/* Acciones */}
-              <td className="px-6 py-4">
-                <div className="flex items-center justify-center gap-3">
-                  {/* Eliminar */}
-                  <button
-                    onClick={() => onDelete(barber.id)}
-                    className="flex items-center gap-2 px-3 py-2 rounded-base border border-default hover:bg-red-100 transition-colors"
-                  >
-                    <Trash2 size={16} />
-
-                    <span className="hidden md:block">Eliminar</span>
-                  </button>
-                </div>
-              </td>
+              S
             </tr>
           ))}
         </tbody>

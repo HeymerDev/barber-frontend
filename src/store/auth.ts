@@ -23,6 +23,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   logout: () => {
     localStorage.removeItem("AUTH_TOKEN");
     localStorage.removeItem("ROLE");
+    window.location.href = "/login";
 
     set({
       role: null,

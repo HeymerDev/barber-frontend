@@ -61,10 +61,10 @@ export const createBarber = async (
   toast.success(message);
 };
 
-export const deleteBarber = async (id: number) => {
+export const deleteBarber = async (id: number, status: boolean) => {
   const {
     data: { message },
-  } = await api.delete(`/admin/barbers/${id}`);
+  } = await api.patch(`/admin/barbers/${id}`, { status });
   toast.success(message);
 };
 

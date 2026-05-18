@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { deleteBarber, getBarbers, getServices } from "../api/admin";
+import { getBarbers, getServices } from "../api/admin";
 import type { Barber, Service } from "../types";
 import TableBarbers from "../components/tables/TableBarbers";
 import CreateBarberModal from "../components/modals/CreateBarberModal";
@@ -31,11 +31,7 @@ const Barbers = () => {
       }
     };
     fetchServices();
-  }, [barbers]);
-
-  const handleDelete = async (id: number) => {
-    await deleteBarber(id);
-  };
+  }, []);
 
   return (
     <main className="container mx-auto">
@@ -59,7 +55,7 @@ const Barbers = () => {
       </div>
 
       {/* Tabla */}
-      <TableBarbers barbers={barbers} onDelete={handleDelete} />
+      <TableBarbers barbers={barbers} />
 
       {/* Modal crear */}
       <CreateBarberModal

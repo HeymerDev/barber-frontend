@@ -1,4 +1,5 @@
 import { NavLink } from "react-router";
+import { useAuthStore } from "../../store/auth";
 
 const navigation = [
   {
@@ -16,6 +17,7 @@ const navigation = [
 ];
 
 const AdminNavbar = () => {
+  const authStore = useAuthStore();
   return (
     <nav className="bg-neutral-primary fixed w-full z-20 top-0 inset-s-0 border-b border-default">
       <div className="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -81,6 +83,14 @@ const AdminNavbar = () => {
             ))}
           </ul>
         </div>
+
+        <button
+          type="button"
+          onClick={() => authStore.logout()}
+          className="text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+        >
+          Cerras Sesion
+        </button>
       </div>
     </nav>
   );

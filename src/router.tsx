@@ -9,6 +9,7 @@ import Services from "./pages/Services";
 import { Appoinments } from "./pages/Appoinments";
 import Book from "./pages/Book";
 import Barbers from "./pages/Barber";
+import BaberAppoinments from "./pages/BaberAppoinments";
 
 const router = createBrowserRouter([
   {
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <h2>Barbero</h2>,
+            element: <BaberAppoinments />,
           },
         ],
       },
